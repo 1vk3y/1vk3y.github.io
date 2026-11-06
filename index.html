@@ -389,6 +389,28 @@
     margin-bottom: 16px;
   }
 
+  .card-screenshot {
+    width: 100%;
+    height: 280px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    background: var(--bg);
+  }
+
+  .card-subtitle {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: -8px;
+    margin-bottom: 12px;
+  }
+
+  .stats-line {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 0 !important;
+  }
+
   .card a {
     font-size: 14px;
     display: inline-flex;
@@ -530,6 +552,77 @@
       bottom: auto;
       left: auto;
     }
+  }
+
+  /* Evolution */
+  .evolution-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 48px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  .evolution-grid {
+    display: grid;
+    grid-template-columns: 1fr 40px 1fr 40px 1fr;
+    gap: 0;
+    justify-content: center;
+    align-items: stretch;
+  }
+
+  .evolution-step {
+    background: var(--card-bg);
+    border: 1px solid var(--divider);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .evolution-step .step-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .evolution-step p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .evolution-current {
+    background: var(--bg);
+    border-color: var(--primary);
+  }
+
+  .evolution-arrow {
+    color: var(--primary);
+    font-size: 24px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .evolution-arrow .arrow-h { display: inline; }
+  .evolution-arrow .arrow-v { display: none; }
+
+  @media (max-width: 768px) {
+    .evolution-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .evolution-arrow {
+      justify-content: center;
+    }
+
+    .evolution-arrow .arrow-h { display: none; }
+    .evolution-arrow .arrow-v { display: inline; }
   }
 
   /* Footer */
@@ -699,35 +792,29 @@
   </div>
 </section>
 
-<!-- 启明星 -->
+<!-- 小作品 -->
 <section>
   <div class="container">
-    <h2 class="section-title">启明星</h2>
-    <p class="section-subtitle">微信小程序 · <span class="tag">开发中</span></p>
+    <h2 class="section-title">小作品</h2>
+    <p class="section-subtitle"><span class="cursive">side projects</span></p>
 
-    <div class="screenshots">
-      <div class="screenshot">
-        <img src="assets/qimingxing-1.jpg" alt="启明星小程序截图" loading="lazy">
+    <div class="cards">
+      <!-- 启明星 -->
+      <div class="card">
+        <h3>启明星 <span class="tag">开发中</span></h3>
+        <img src="assets/qimingxing-1.jpg" alt="启明星小程序截图" loading="lazy" class="card-screenshot">
+        <p class="mt-16">给新生儿起一个能写下来的汉字名：用字限定在《通用规范汉字表》内，每个名字附拼音、字义和出处。起名模型还在搭建，暂未发布。</p>
+        <p class="stats-line">主要用 Grok 开发</p>
+      </div>
+
+      <!-- 地铁刷卡 -->
+      <div class="card">
+        <h3>地铁刷卡</h3>
+        <p class="card-subtitle">微信小游戏</p>
+        <img src="assets/subway-game.jpg" alt="地铁刷卡小游戏截图" loading="lazy" class="card-screenshot">
+        <p class="mt-16">拼手速的小游戏：按提示刷卡、扫码、关门</p>
       </div>
     </div>
-
-    <p class="description">
-      给新生儿起一个能写下来的汉字名：用字限定在《通用规范汉字表》内，每个名字附拼音、字义和出处。起名模型还在搭建，暂未发布。
-    </p>
-
-    <div class="stats">
-      <span>主要用 Grok 开发</span>
-    </div>
-
-    <div class="screenshots mt-32">
-      <div class="screenshot">
-        <img src="assets/subway-game.jpg" alt="地铁刷卡小游戏截图" loading="lazy">
-      </div>
-    </div>
-
-    <p class="description mt-16">
-      微信小游戏「地铁刷卡」：模拟地铁刷卡进站的小游戏。
-    </p>
   </div>
 </section>
 
@@ -785,6 +872,24 @@
       </div>
       <div class="loop">
         <span class="loop-text">不通过就打回重写</span>
+      </div>
+    </div>
+
+    <h3 class="evolution-title">方法也在变</h3>
+    <div class="evolution-grid">
+      <div class="evolution-step">
+        <div class="step-label">起步</div>
+        <p>先设 Role、写背景和规格，再开工</p>
+      </div>
+      <div class="evolution-arrow"><span class="arrow-h">→</span><span class="arrow-v">↓</span></div>
+      <div class="evolution-step">
+        <div class="step-label">后来</div>
+        <p>0 帧起手，反复迭代</p>
+      </div>
+      <div class="evolution-arrow"><span class="arrow-h">→</span><span class="arrow-v">↓</span></div>
+      <div class="evolution-step evolution-current">
+        <div class="step-label">现在</div>
+        <p>回到规格驱动：多个 Role 分工推进，先让 Agent 提问确认细节，一个 Agent 卡住就换另一个</p>
       </div>
     </div>
   </div>
