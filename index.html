@@ -398,6 +398,25 @@
     background: var(--bg);
   }
 
+  .dev-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 400;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    padding: 2px 8px;
+    border-radius: 12px;
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .dev-tag {
+      background: var(--primary-dark);
+      color: var(--primary-light);
+    }
+  }
+
   .card-subtitle {
     font-size: 13px;
     color: var(--text-secondary);
@@ -801,7 +820,8 @@
     <div class="cards">
       <!-- 启明星 -->
       <div class="card">
-        <h3>启明星 <span class="tag">开发中</span></h3>
+        <h3>启明星 <span class="dev-tag">开发中</span></h3>
+        <p class="card-subtitle">微信小程序</p>
         <img src="assets/qimingxing-1.jpg" alt="启明星小程序截图" loading="lazy" class="card-screenshot">
         <p class="mt-16">给新生儿起一个能写下来的汉字名：用字限定在《通用规范汉字表》内，每个名字附拼音、字义和出处。起名模型还在搭建，暂未发布。</p>
         <p class="stats-line">主要用 Grok 开发</p>
