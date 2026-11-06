@@ -1,0 +1,757 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1vk3y · 作品集</title>
+<style>
+  :root {
+    --primary: #2f6b35;
+    --primary-dark: #24522a;
+    --primary-mid: #3f7d3c;
+    --primary-light: #cfe6c4;
+    --bg: #eef5ea;
+    --text: #1b1d1b;
+    --text-secondary: #4a504b;
+    --divider: #dfe6dc;
+    --card-bg: #ffffff;
+    --placeholder-bg: #d8dfd6;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --primary: #8fbf7f;
+      --primary-dark: #6a9f5a;
+      --primary-mid: #7db86d;
+      --primary-light: #3a5f3a;
+      --bg: #141814;
+      --text: #e8ece7;
+      --text-secondary: #9aa59b;
+      --divider: #2a332a;
+      --card-bg: #1e241e;
+      --placeholder-bg: #2a332a;
+    }
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+
+  a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  a:hover { opacity: 0.7; }
+
+  /* Header */
+  .header {
+    background:
+      radial-gradient(circle at 20% 30%, rgba(255,255,255,0.08) 1px, transparent 1px),
+      radial-gradient(circle at 60% 70%, rgba(255,255,255,0.08) 1px, transparent 1px),
+      linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-mid) 100%);
+    background-size: 12px 12px, 18px 18px, 100% 100%;
+    background-position: 0 0, 6px 6px, 0 0;
+    color: #ffffff;
+    padding: 48px 0 40px;
+    text-align: center;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .header {
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.05) 1px, transparent 1px),
+        radial-gradient(circle at 60% 70%, rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(135deg, #1a2e1a 0%, var(--primary-dark) 50%, #2a4a2a 100%);
+      background-size: 12px 12px, 18px 18px, 100% 100%;
+    }
+  }
+
+  .header h1 {
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+  }
+
+  .header .tagline {
+    font-size: 16px;
+    opacity: 0.9;
+    margin-bottom: 12px;
+  }
+
+  .header .cursive {
+    font-family: "Snell Roundhand", "Apple Chancery", cursive;
+    font-size: 20px;
+    font-style: italic;
+    opacity: 0.85;
+    margin-bottom: 24px;
+  }
+
+  .header .contact {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .header .contact a {
+    color: #ffffff;
+    font-size: 14px;
+    opacity: 0.9;
+  }
+
+  .header .contact a:hover { opacity: 1; }
+
+  /* Section */
+  section {
+    padding: 64px 0;
+  }
+
+  section:nth-child(even) {
+    background: var(--card-bg);
+  }
+
+  .section-title {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+
+  .section-subtitle {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+  }
+
+  .section-subtitle .cursive {
+    font-family: "Snell Roundhand", "Apple Chancery", cursive;
+    font-style: italic;
+    color: var(--primary);
+    font-size: 18px;
+  }
+
+  /* Screenshots */
+  .screenshots {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 16px;
+    margin-bottom: 32px;
+  }
+
+  .screenshots::-webkit-scrollbar {
+    display: none;
+  }
+
+  .screenshots--stacked {
+    flex-direction: column;
+    overflow-x: visible;
+  }
+
+  .screenshots--stacked .screenshot {
+    width: 100%;
+    max-width: none;
+  }
+
+  .screenshot {
+    flex: 0 0 auto;
+    width: 240px;
+    scroll-snap-align: center;
+  }
+
+  .screenshot--horizontal {
+    width: 100%;
+    flex: 1 1 100%;
+  }
+
+  .screenshot img,
+  .placeholder {
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    border-radius: 12px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .screenshot--horizontal img,
+  .screenshot--horizontal .placeholder {
+    aspect-ratio: 16 / 10;
+  }
+
+  .placeholder {
+    background: var(--placeholder-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 14px;
+    text-align: center;
+    padding: 16px;
+  }
+
+  /* QR Code */
+  .qr-section {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+
+  .qr-code {
+    width: 120px;
+    height: 120px;
+    background: var(--placeholder-bg);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 12px;
+    text-align: center;
+    padding: 8px;
+    flex-shrink: 0;
+  }
+
+  .qr-text {
+    font-size: 16px;
+    color: var(--text);
+  }
+
+  /* Stats */
+  .stats {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+  }
+
+  .stats span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .stats .separator {
+    opacity: 0.4;
+  }
+
+  /* Description */
+  .description {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 600px;
+  }
+
+  /* Architecture Diagram */
+  .architecture {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px 0;
+    margin-bottom: 32px;
+    align-items: center;
+  }
+
+  .arch-flow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .arch-branch-line {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .arch-box {
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    padding: 16px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .arch-box {
+      background: var(--primary-dark);
+      color: var(--primary-light);
+    }
+  }
+
+  .arch-arrow {
+    color: var(--primary);
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .arch-annotation {
+    font-size: 13px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+  }
+
+  /* Cards */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 32px;
+  }
+
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--divider);
+    border-radius: 12px;
+    padding: 24px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .card:hover {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+  }
+
+  .card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .card p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .card .placeholder {
+    aspect-ratio: 16 / 9;
+    margin-bottom: 16px;
+  }
+
+  .card a {
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* Workflow */
+  .workflow-grid {
+    display: grid;
+    grid-template-columns: 140px 40px 140px 40px 140px 40px 140px;
+    gap: 0;
+    justify-content: center;
+    align-items: center;
+    padding: 24px 0 60px;
+  }
+
+  .workflow-step {
+    background: var(--card-bg);
+    border: 2px solid var(--primary);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    width: 140px;
+  }
+
+  .workflow-step .step-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 4px;
+  }
+
+  .workflow-step .step-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+
+  .workflow-arrow {
+    color: var(--primary);
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .workflow-arrow .arrow-h { display: inline; }
+  .workflow-arrow .arrow-v { display: none; }
+
+  .loop {
+    grid-column: 3 / 8;
+    grid-row: 2;
+    margin: 0 70px;
+    height: 28px;
+    border-left: 2px dashed var(--text-secondary);
+    border-bottom: 2px dashed var(--text-secondary);
+    border-right: 2px dashed var(--text-secondary);
+    border-radius: 0 0 8px 8px;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 4px;
+  }
+
+  .loop::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -6px;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 6px solid var(--text-secondary);
+  }
+
+  .loop-text {
+    font-size: 13px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  @media (max-width: 768px) {
+    .workflow-grid {
+      grid-template-columns: 1fr 32px;
+      gap: 12px 0;
+      padding: 24px 0 24px 0;
+      align-items: stretch;
+    }
+
+    .workflow-step {
+      grid-column: 1;
+      width: 100%;
+    }
+
+    .workflow-arrow {
+      grid-column: 1;
+      justify-self: center;
+    }
+
+    .workflow-arrow .arrow-h { display: none; }
+    .workflow-arrow .arrow-v { display: inline; }
+
+    .loop {
+      grid-column: 2;
+      grid-row: 3 / 10;
+      margin: 30px 0;
+      height: auto;
+      border-left: none;
+      border-top: 2px dashed var(--text-secondary);
+      border-right: 2px dashed var(--text-secondary);
+      border-bottom: 2px dashed var(--text-secondary);
+      border-radius: 0 8px 8px 0;
+      align-items: center;
+      justify-content: flex-end;
+      padding-bottom: 0;
+      padding-right: 4px;
+    }
+
+    .loop::before {
+      top: -1px;
+      left: -6px;
+      right: auto;
+      border-left: none;
+      border-right: 6px solid var(--text-secondary);
+      border-bottom: 5px solid transparent;
+      border-top: 5px solid transparent;
+      transform: none;
+    }
+
+    .loop-text {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      position: static;
+      transform: none;
+      bottom: auto;
+      left: auto;
+    }
+  }
+
+  /* Footer */
+  .footer {
+    background: var(--primary-dark);
+    color: #ffffff;
+    padding: 40px 0;
+    text-align: center;
+  }
+
+  .footer p {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 16px;
+  }
+
+  .footer .cursive {
+    font-family: "Snell Roundhand", "Apple Chancery", cursive;
+    font-style: italic;
+    font-size: 16px;
+    opacity: 0.8;
+  }
+
+  .footer .contact {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    margin-top: 16px;
+  }
+
+  .footer .contact a {
+    color: #ffffff;
+    font-size: 14px;
+    opacity: 0.9;
+  }
+
+  .footer .contact a:hover { opacity: 1; }
+
+  /* Responsive */
+  @media (min-width: 768px) {
+    .header h1 { font-size: 40px; }
+    .header .tagline { font-size: 18px; }
+    .header .cursive { font-size: 24px; }
+
+    .section-title { font-size: 32px; }
+
+    .screenshots {
+      overflow-x: visible;
+      justify-content: center;
+    }
+
+    .screenshot {
+      width: calc((100% - 32px) / 3);
+      max-width: 280px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .header { padding: 64px 0 56px; }
+    .header h1 { font-size: 48px; }
+
+    section { padding: 80px 0; }
+
+    .screenshot { width: 320px; }
+  }
+
+  /* Utility */
+  .mb-16 { margin-bottom: 16px; }
+  .mb-24 { margin-bottom: 24px; }
+  .mb-32 { margin-bottom: 32px; }
+  .mt-16 { margin-top: 16px; }
+  .mt-24 { margin-top: 24px; }
+  .mt-32 { margin-top: 32px; }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="container">
+    <h1>1vk3y</h1>
+    <p class="tagline">后端工程师 · AI 重度用户</p>
+    <p class="cursive">I build with agents</p>
+    <div class="contact">
+      <a href="https://github.com/1vk3y" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:lvk3y@foxmail.com" rel="noopener">邮箱</a>
+    </div>
+  </div>
+</header>
+
+<!-- 賨记 -->
+<section>
+  <div class="container">
+    <h2 class="section-title">賨记</h2>
+    <p class="section-subtitle">微信小程序 · <span class="cursive">for friends</span></p>
+
+    <div class="screenshots">
+      <div class="screenshot">
+        <div class="placeholder">賨记截图 1</div>
+      </div>
+      <div class="screenshot">
+        <div class="placeholder">賨记截图 2</div>
+      </div>
+      <div class="screenshot">
+        <div class="placeholder">賨记截图 3</div>
+      </div>
+    </div>
+
+    <div class="qr-section">
+      <img src="assets/congji-qr.jpg" alt="賨记小程序码" class="qr-code" style="width: 120px; height: 120px; border-radius: 8px;">
+      <p class="qr-text">微信扫码体验</p>
+    </div>
+
+    <div class="stats">
+      <span>33 个云函数</span>
+      <span class="separator">·</span>
+      <span>约 4 万行</span>
+      <span class="separator">·</span>
+      <span>带单元测试</span>
+      <span class="separator">·</span>
+      <span>主要用 Codex 开发</span>
+    </div>
+
+    <p class="description">
+      取材丽江化賨文化，给一群朋友用的活动工具：轮值、签到、投票、年会抽奖。
+    </p>
+  </div>
+</section>
+
+<!-- Chelae -->
+<section>
+  <div class="container">
+    <h2 class="section-title">Chelae</h2>
+    <p class="section-subtitle">期货量化交易系统 · <span class="cursive">in Rust</span></p>
+
+    <div class="architecture">
+      <div class="arch-flow">
+        <div class="arch-box">行情</div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-box">信号</div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-box">报单</div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-box">风控</div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-box">告警</div>
+      </div>
+      <div class="arch-branch-line">
+        <div class="arch-box">回测</div>
+        <div class="arch-annotation">历史行情回放，复用信号与风控</div>
+      </div>
+    </div>
+
+    <div class="screenshots screenshots--stacked mb-32">
+      <div class="screenshot screenshot--horizontal">
+        <div class="placeholder">运行日志截图 1</div>
+      </div>
+      <div class="screenshot screenshot--horizontal">
+        <div class="placeholder">运行日志截图 2</div>
+      </div>
+    </div>
+
+    <p class="description">
+      接入 CTP，模块包含行情、信号、报单、风控、回测、监控告警。2026 年 4 月起实盘约两个月，目前暂停实盘、迭代策略。Claude Code 编写，Codex 审查。
+    </p>
+  </div>
+</section>
+
+<!-- 代码之外 -->
+<section>
+  <div class="container">
+    <h2 class="section-title">代码之外</h2>
+    <p class="section-subtitle"><span class="cursive">beyond code</span></p>
+
+    <div class="cards">
+      <!-- AI 音乐 -->
+      <div class="card">
+        <h3>AI 音乐</h3>
+        <p class="mt-16">本地部署 ACE-Step，加上 Suno</p>
+        <a href="https://music.163.com/#/artist?id=123053098" target="_blank" rel="noopener">网易云音乐 →</a>
+      </div>
+
+      <!-- 微信小游戏 -->
+      <div class="card">
+        <h3>微信小游戏「地铁刷卡」</h3>
+        <img src="assets/subway-game.jpg" alt="地铁刷卡小游戏截图" loading="lazy" style="width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 8px; margin-bottom: 16px;">
+      </div>
+
+      <!-- AI 视频 -->
+      <div class="card">
+        <h3>AI 生成的个人视频</h3>
+        <img src="assets/ai-video-cover-2.jpg" alt="AI 视频封面" loading="lazy" style="width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 8px; margin-bottom: 16px;">
+        <p class="mt-16">
+          <a href="assets/ai-video.mp4" target="_blank" rel="noopener">观看视频 →</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 我怎么用 AI 写代码 -->
+<section>
+  <div class="container">
+    <h2 class="section-title">我怎么用 AI 写代码</h2>
+    <p class="section-subtitle"><span class="cursive">workflow</span></p>
+
+    <div class="workflow-grid">
+      <div class="workflow-step">
+        <div class="step-title">我</div>
+        <div class="step-desc">设计和拆解</div>
+      </div>
+      <div class="workflow-arrow"><span class="arrow-h">→</span><span class="arrow-v">↓</span></div>
+      <div class="workflow-step">
+        <div class="step-title">Claude Code</div>
+        <div class="step-desc">编写</div>
+      </div>
+      <div class="workflow-arrow"><span class="arrow-h">→</span><span class="arrow-v">↓</span></div>
+      <div class="workflow-step">
+        <div class="step-title">Codex</div>
+        <div class="step-desc">交叉审查</div>
+      </div>
+      <div class="workflow-arrow"><span class="arrow-h">→</span><span class="arrow-v">↓</span></div>
+      <div class="workflow-step">
+        <div class="step-title">我</div>
+        <div class="step-desc">验证验收</div>
+      </div>
+      <div class="loop">
+        <span class="loop-text">不通过就打回重写</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <p>这个页面是用 Qoder 做的</p>
+    <p class="cursive">crafted with care</p>
+    <div class="contact">
+      <a href="https://github.com/1vk3y" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:lvk3y@foxmail.com" rel="noopener">邮箱</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
