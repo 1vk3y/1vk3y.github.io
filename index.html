@@ -751,6 +751,86 @@
   }
   .screenshots--game img { border-radius: 8px; }
 
+  /* Fixed Navigation */
+  .nav-fixed {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: var(--card-bg);
+    border: 1px solid var(--divider);
+    border-radius: 12px;
+    padding: 16px 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .nav-fixed a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    text-decoration: none;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .nav-fixed a:hover {
+    color: var(--primary);
+    opacity: 1;
+  }
+
+  .nav-fixed a.active {
+    color: var(--primary);
+    font-weight: 600;
+  }
+
+  .nav-fixed a::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--divider);
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .nav-fixed a.active::before {
+    background: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light);
+  }
+
+  @media (max-width: 1023px) {
+    .nav-fixed {
+      right: auto;
+      left: 0;
+      top: auto;
+      bottom: 0;
+      transform: none;
+      flex-direction: row;
+      width: 100%;
+      border-radius: 0;
+      padding: 12px 16px;
+      overflow-x: auto;
+      gap: 20px;
+      justify-content: flex-start;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .nav-fixed a {
+      font-size: 12px;
+    }
+
+    .nav-fixed a::before {
+      width: 5px;
+      height: 5px;
+    }
+  }
+
   /* Utility */
   .mb-16 { margin-bottom: 16px; }
   .mb-24 { margin-bottom: 24px; }
@@ -762,8 +842,20 @@
 </head>
 <body>
 
+<!-- Fixed Navigation -->
+<nav class="nav-fixed">
+  <a href="#header">顶部</a>
+  <a href="#congji">賨记</a>
+  <a href="#chelae">Chelae</a>
+  <a href="#yongjie">永劫转职</a>
+  <a href="#works">小作品</a>
+  <a href="#beyond">代码之外</a>
+  <a href="#workflow">AI 工作流</a>
+  <a href="#footer">底部</a>
+</nav>
+
 <!-- Header -->
-<header class="header">
+<header id="header" class="header">
   <div class="container">
     <h1>1vk3y</h1>
     <p class="tagline">后端工程师 · AI 重度用户</p>
@@ -776,7 +868,7 @@
 </header>
 
 <!-- 賨记 -->
-<section>
+<section id="congji">
   <div class="container">
     <h2 class="section-title">賨记</h2>
     <p class="section-subtitle">微信小程序 · <span class="cursive">for friends</span></p>
@@ -815,7 +907,7 @@
 </section>
 
 <!-- Chelae -->
-<section>
+<section id="chelae">
   <div class="container">
     <h2 class="section-title">Chelae</h2>
     <p class="section-subtitle">期货量化交易系统 · <span class="cursive">in Rust</span></p>
@@ -855,7 +947,7 @@
 </section>
 
 <!-- 永劫转职 -->
-<section>
+<section id="yongjie">
   <div class="container">
     <h2 class="section-title">永劫转职 <span class="dev-tag">开发中</span></h2>
     <p class="section-subtitle">Steam 像素肉鸽</p>
@@ -889,7 +981,7 @@
 </section>
 
 <!-- 小作品 -->
-<section>
+<section id="works">
   <div class="container">
     <h2 class="section-title">小作品</h2>
     <p class="section-subtitle"><span class="cursive">side projects</span></p>
@@ -921,7 +1013,7 @@
 </section>
 
 <!-- 代码之外 -->
-<section>
+<section id="beyond">
   <div class="container">
     <h2 class="section-title">代码之外</h2>
     <p class="section-subtitle"><span class="cursive">beyond code</span></p>
@@ -952,7 +1044,7 @@
 </section>
 
 <!-- 我怎么用 AI 写代码 -->
-<section>
+<section id="workflow">
   <div class="container">
     <h2 class="section-title">我怎么用 AI 写代码</h2>
     <p class="section-subtitle"><span class="cursive">workflow</span></p>
@@ -1003,7 +1095,7 @@
 </section>
 
 <!-- Footer -->
-<footer class="footer">
+<footer id="footer" class="footer">
   <div class="container">
     <p>这个页面是用 Qoder 做的</p>
     <p class="cursive">crafted with care</p>
@@ -1013,6 +1105,32 @@
     </div>
   </div>
 </footer>
+
+<script>
+// Smooth scroll and active section tracking
+const navLinks = document.querySelectorAll('.nav-fixed a');
+const sections = document.querySelectorAll('header[id], section[id], footer[id]');
+
+// Highlight active section on scroll
+function updateActiveSection() {
+  const scrollPos = window.scrollY + 100;
+  
+  sections.forEach(section => {
+    const top = section.offsetTop;
+    const height = section.offsetHeight;
+    const id = section.getAttribute('id');
+    const link = document.querySelector(`.nav-fixed a[href="#${id}"]`);
+    
+    if (scrollPos >= top && scrollPos < top + height) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      if (link) link.classList.add('active');
+    }
+  });
+}
+
+window.addEventListener('scroll', updateActiveSection);
+updateActiveSection();
+</script>
 
 </body>
 </html>
