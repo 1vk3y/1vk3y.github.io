@@ -418,19 +418,17 @@
     }
 
     .card--horizontal .card-screenshot {
-      flex: 0 0 40%;
+      width: 40%;
+      min-width: 0;
       max-width: none;
       margin-bottom: 0;
     }
 
     .card--horizontal .card-content {
       flex: 1;
+      min-width: 0;
       display: flex;
       flex-direction: column;
-    }
-
-    .card--horizontal .card-content p {
-      flex: 1;
     }
   }
 
@@ -744,6 +742,15 @@
     .screenshot { width: 320px; }
   }
 
+  /* Game screenshots layout */
+  .screenshots--game .screenshot { width: 85%; max-width: none; }
+  @media (min-width: 768px) {
+    .screenshots--game { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .screenshots--game .screenshot { width: auto; }
+    .screenshots--game .screenshot:first-child { grid-column: 1 / -1; }
+  }
+  .screenshots--game img { border-radius: 8px; }
+
   /* Utility */
   .mb-16 { margin-bottom: 16px; }
   .mb-24 { margin-bottom: 24px; }
@@ -853,23 +860,23 @@
     <h2 class="section-title">永劫转职 <span class="dev-tag">开发中</span></h2>
     <p class="section-subtitle">Steam 像素肉鸽</p>
 
-    <div class="screenshots">
+    <div class="screenshots screenshots--game">
       <div class="screenshot">
-        <img src="assets/yongjie-1.jpg" alt="永劫转职标题画面" loading="lazy">
+        <img src="assets/yongjie-1.jpg" alt="誓约试炼开场" loading="lazy">
       </div>
       <div class="screenshot">
-        <img src="assets/yongjie-2.jpg" alt="永劫转职安全屋选职业" loading="lazy">
+        <img src="assets/yongjie-2.jpg" alt="斩击与 Boss 预警" loading="lazy">
       </div>
       <div class="screenshot">
-        <img src="assets/yongjie-3.jpg" alt="永劫转职连斩守门者" loading="lazy">
+        <img src="assets/yongjie-3.jpg" alt="守门者近景" loading="lazy">
       </div>
     </div>
 
     <p class="description">
-      融合多种游戏元素的另类像素肉鸽，程序、美术、玩法都由我一个人完成。尚未上架 Steam。
+      融合多种游戏元素的另类像素肉鸽。我一个人带着 AI 做：Claude Code 统筹、分派任务，4 个 Codex 会话分别负责美术、代码、测试和审计。尚未上架 Steam。
     </p>
 
-    <div class="stats">
+    <div class="stats mt-16">
       <span>Godot</span>
       <span class="separator">·</span>
       <span>C#</span>
@@ -877,8 +884,6 @@
       <span>Aseprite</span>
       <span class="separator">·</span>
       <span>Spine</span>
-      <span class="separator">·</span>
-      <span>主要用 Claude Code + Codex 开发</span>
     </div>
   </div>
 </section>
@@ -939,7 +944,7 @@
       <div class="card">
         <h3>AI 生成的个人视频</h3>
         <video controls preload="none" playsinline poster="assets/ai-video-cover-2.jpg"
-               src="assets/ai-video-web.mp4"
+               src="assets/ai-video.mp4"
                style="width: 100%; aspect-ratio: 16/9; border-radius: 8px; margin-top: 16px; background: #000;"></video>
       </div>
     </div>
