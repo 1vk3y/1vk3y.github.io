@@ -1190,6 +1190,19 @@ const sections = document.querySelectorAll('header[id], section[id], footer[id]'
 // Highlight active section on scroll
 function updateActiveSection() {
   const scrollPos = window.scrollY + 100;
+  const windowHeight = window.innerHeight;
+  const docHeight = document.documentElement.scrollHeight;
+  
+  // Check if we're at the bottom of the page
+  const isAtBottom = (scrollPos + windowHeight) >= (docHeight - 50);
+  
+  if (isAtBottom) {
+    // Force footer to be active when at bottom
+    navLinks.forEach(l => l.classList.remove('active'));
+    const footerLink = document.querySelector('.nav-fixed a[href="#footer"]');
+    if (footerLink) footerLink.classList.add('active');
+    return;
+  }
   
   sections.forEach(section => {
     const top = section.offsetTop;
