@@ -1214,11 +1214,18 @@ navLinks.forEach(link => {
     const targetId = this.getAttribute('href').substring(1);
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
-      const offset = targetId === 'footer' ? targetElement.offsetTop - 50 : targetElement.offsetTop;
-      window.scrollTo({
-        top: offset,
-        behavior: 'smooth'
-      });
+      if (targetId === 'footer') {
+        // Scroll to the very bottom of the page
+        window.scrollTo({
+          top: document.documentElement.scrollHeight,
+          behavior: 'smooth'
+        });
+      } else {
+        window.scrollTo({
+          top: targetElement.offsetTop,
+          behavior: 'smooth'
+        });
+      }
     }
   });
 });
