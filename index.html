@@ -1235,18 +1235,18 @@ navLinks.forEach(link => {
     const targetId = this.getAttribute('href').substring(1);
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
+      let scrollPosition;
       if (targetId === 'footer') {
         // Scroll to the very bottom of the page
-        window.scrollTo({
-          top: document.documentElement.scrollHeight,
-          behavior: 'smooth'
-        });
+        scrollPosition = document.documentElement.scrollHeight;
       } else {
-        window.scrollTo({
-          top: targetElement.offsetTop,
-          behavior: 'smooth'
-        });
+        // Scroll to the top of the target section with a small offset
+        scrollPosition = targetElement.offsetTop - 20;
       }
+      window.scrollTo({
+        top: scrollPosition,
+        behavior: 'smooth'
+      });
     }
   });
 });
