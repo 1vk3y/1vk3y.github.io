@@ -1221,14 +1221,10 @@ document.getElementById('toggle-prompts').addEventListener('click', function() {
   }
 });
 
-// Suppress alerts from NetEase iframe
-const originalAlert = window.alert;
+// Suppress all alerts (from NetEase iframe or elsewhere)
 window.alert = function(message) {
-  if (message && (message.includes('资源加载失败') || message.includes('加载失败'))) {
-    console.warn('[Suppressed alert]', message);
-    return;
-  }
-  originalAlert.apply(window, arguments);
+  console.warn('[Alert suppressed]', message);
+  return;
 };
 
 // Suppress error events from iframe
