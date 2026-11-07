@@ -5,13 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>1vk3y · 作品集</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<script>
-// Suppress all alerts EARLY (before iframe loads)
-window.alert = function(message) {
-  console.warn('[Alert suppressed]', message);
-  return;
-};
-</script>
 <style>
   :root {
     --primary: #2f6b35;
@@ -812,7 +805,7 @@ window.alert = function(message) {
     box-shadow: 0 0 0 3px var(--primary-light);
   }
 
-  @media (max-width: 1023px) {
+  @media (max-width: 1439px) {
     .nav-fixed {
       right: auto;
       left: 0;
@@ -836,6 +829,10 @@ window.alert = function(message) {
     .nav-fixed a::before {
       width: 5px;
       height: 5px;
+    }
+
+    body {
+      padding-bottom: 48px;
     }
   }
 
@@ -1111,28 +1108,28 @@ window.alert = function(message) {
     
     <!-- 工程统计 -->
     <div style="margin: 32px 0; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.2);">
-      <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 20px; opacity: 0.95;">本次工程统计</h3>
+      <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 20px; opacity: 0.95;">本页工程统计（截至 2026-11-07）</h3>
       
       <div style="display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px;">
         <div>
-          <div style="font-size: 28px; font-weight: 700;">17</div>
+          <div style="font-size: 28px; font-weight: 700;">32</div>
           <div style="font-size: 12px; opacity: 0.85;">次提交</div>
         </div>
         <div>
-          <div style="font-size: 28px; font-weight: 700;">249</div>
-          <div style="font-size: 12px; opacity: 0.85;">行净增代码</div>
+          <div style="font-size: 28px; font-weight: 700;">1278</div>
+          <div style="font-size: 12px; opacity: 0.85;">行（index.html）</div>
         </div>
         <div>
-          <div style="font-size: 28px; font-weight: 700;">6</div>
-          <div style="font-size: 12px; opacity: 0.85;">个文件变更</div>
+          <div style="font-size: 28px; font-weight: 700;">51</div>
+          <div style="font-size: 12px; opacity: 0.85;">轮对话</div>
         </div>
         <div>
-          <div style="font-size: 28px; font-weight: 700;">~3h</div>
-          <div style="font-size: 12px; opacity: 0.85;">工程时长</div>
+          <div style="font-size: 28px; font-weight: 700;">约 3 小时</div>
+          <div style="font-size: 12px; opacity: 0.85;">实际工作</div>
         </div>
         <div>
-          <div style="font-size: 28px; font-weight: 700;">45</div>
-          <div style="font-size: 12px; opacity: 0.85;">次人机交互</div>
+          <div style="font-size: 28px; font-weight: 700;">1</div>
+          <div style="font-size: 12px; opacity: 0.85;">个 Qoder 会话</div>
         </div>
       </div>
       
@@ -1163,7 +1160,7 @@ window.alert = function(message) {
         
         <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 16px; margin-bottom: 12px;">
           <div style="font-size: 12px; font-weight: 600; margin-bottom: 6px; opacity: 0.9;">3. 嵌入外部播放器</div>
-          <pre style="font-size: 12px; line-height: 1.5; opacity: 0.85; white-space: pre-wrap; margin: 0;">嵌入网易云音乐外链播放器，处理跨域错误和 alert 弹窗，添加加载超时重试机制，确保播放器稳定显示。拦截"资源加载失败"弹窗，console 错误来自第三方脚本无法消除但不影响功能。</pre>
+          <pre style="font-size: 12px; line-height: 1.5; opacity: 0.85; white-space: pre-wrap; margin: 0;">嵌入网易云音乐外链播放器。播放器加载失败时会弹「资源加载失败」：给 iframe 加 sandbox="allow-scripts allow-same-origin allow-forms allow-popups"（不含 allow-modals），弹窗就被挡住了。console 里的跨域报错来自网易云自己的脚本，不影响播放。</pre>
         </div>
         
         <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 16px; margin-bottom: 12px;">
@@ -1262,14 +1259,6 @@ document.getElementById('toggle-prompts').addEventListener('click', function() {
   } else {
     container.style.display = 'none';
     button.textContent = '做同款 →';
-  }
-});
-
-// Suppress error events from iframe
-window.addEventListener('error', function(event) {
-  if (event.message && (event.message.includes('资源加载失败') || event.message.includes('Blocked a frame'))) {
-    event.preventDefault();
-    console.warn('[Suppressed error]', event.message);
   }
 });
 </script>
