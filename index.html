@@ -843,6 +843,17 @@
   .mt-16 { margin-top: 16px; }
   .mt-24 { margin-top: 24px; }
   .mt-32 { margin-top: 32px; }
+
+  /* Music player slots */
+  .music-slot { position: relative; }
+  .music-slot::before {
+    content: ""; position: absolute; inset: 11px; border-radius: 4px;
+    background: linear-gradient(90deg, var(--divider) 25%, var(--bg) 50%, var(--divider) 75%);
+    background-size: 200% 100%; animation: music-shimmer 1.2s linear infinite;
+  }
+  .music-slot iframe { position: relative; z-index: 1; display: block; }
+  @keyframes music-shimmer { to { background-position: -200% 0; } }
+  @media (prefers-reduced-motion: reduce) { .music-slot::before { animation: none; } }
 </style>
 </head>
 <body>
@@ -1029,22 +1040,30 @@
         <h3>AI 音乐</h3>
         <p class="mt-16">本地部署 ACE-Step，加上 Suno</p>
         <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px; max-width: 430px;">
-          <iframe src="https://music.163.com/outchain/player?type=2&id=3352372195&auto=0&height=66"
-                  width="100%" height="86" frameborder="no" border="0"
-                  marginwidth="0" marginheight="0" title="强力的丈夫"
-                  sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
-          <iframe src="https://music.163.com/outchain/player?type=2&id=3356115862&auto=0&height=66"
-                  width="100%" height="86" frameborder="no" border="0"
-                  marginwidth="0" marginheight="0" title="下一场"
-                  sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
-          <iframe src="https://music.163.com/outchain/player?type=2&id=3356485011&auto=0&height=66"
-                  width="100%" height="86" frameborder="no" border="0"
-                  marginwidth="0" marginheight="0" title="No Place to Go"
-                  sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
-          <iframe src="https://music.163.com/outchain/player?type=2&id=3356932183&auto=0&height=66"
-                  width="100%" height="86" frameborder="no" border="0"
-                  marginwidth="0" marginheight="0" title="青石巷"
-                  sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+          <div class="music-slot">
+            <iframe src="https://music.163.com/outchain/player?type=2&id=3352372195&auto=0&height=66"
+                    width="100%" height="86" frameborder="no" border="0"
+                    marginwidth="0" marginheight="0" title="强力的丈夫"
+                    sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+          </div>
+          <div class="music-slot">
+            <iframe src="https://music.163.com/outchain/player?type=2&id=3356115862&auto=0&height=66"
+                    width="100%" height="86" frameborder="no" border="0"
+                    marginwidth="0" marginheight="0" title="下一场"
+                    sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+          </div>
+          <div class="music-slot">
+            <iframe src="https://music.163.com/outchain/player?type=2&id=3356485011&auto=0&height=66"
+                    width="100%" height="86" frameborder="no" border="0"
+                    marginwidth="0" marginheight="0" title="No Place to Go"
+                    sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+          </div>
+          <div class="music-slot">
+            <iframe src="https://music.163.com/outchain/player?type=2&id=3356932183&auto=0&height=66"
+                    width="100%" height="86" frameborder="no" border="0"
+                    marginwidth="0" marginheight="0" title="青石巷"
+                    sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+          </div>
         </div>
         <p class="mt-16">
           <a href="https://music.163.com/#/artist?id=123053098" target="_blank" rel="noopener">网易云音乐 →</a>
@@ -1159,36 +1178,38 @@
       ">查看提示词 →</button>
       
       <div id="prompts-container" style="display: none; margin-top: 24px; text-align: left; max-width: 700px; margin-left: auto; margin-right: auto;">
-        <h4 style="font-size: 15px; font-weight: 600; margin-bottom: 16px; opacity: 0.95;">用到的提示词（整理版）</h4>
-        
-        <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 16px; margin-bottom: 12px;">
-          <div style="font-size: 12px; font-weight: 600; margin-bottom: 6px; opacity: 0.9;">1. 创建作品集页面</div>
-          <pre style="font-size: 12px; line-height: 1.5; opacity: 0.85; white-space: pre-wrap; margin: 0;">给 1vk3y.github.io 做一个单页作品集，展示后端工程项目。页面要简洁专业，适合招聘方快速浏览。包含：项目截图、技术栈、简要说明。移动端优先，响应式布局。</pre>
-        </div>
-        
-        <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 16px; margin-bottom: 12px;">
-          <div style="font-size: 12px; font-weight: 600; margin-bottom: 6px; opacity: 0.9;">2. 添加固定导航</div>
-          <pre style="font-size: 12px; line-height: 1.5; opacity: 0.85; white-space: pre-wrap; margin: 0;">将各小节的标题做成磁吸样式（模仿时间线），方便在页面任何地方都可以点到其他小节（包括顶部、底部）。桌面端右侧垂直导航，移动端底部水平导航，自动高亮当前区块。</pre>
-        </div>
-        
-        <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 16px; margin-bottom: 12px;">
-          <div style="font-size: 12px; font-weight: 600; margin-bottom: 6px; opacity: 0.9;">3. 嵌入外部播放器</div>
-          <pre style="font-size: 12px; line-height: 1.5; opacity: 0.85; white-space: pre-wrap; margin: 0;">嵌入网易云音乐外链播放器。整张专辑的播放器有时加载不出曲目，改成每首歌一个单曲播放器（type=2）；iframe 加 sandbox（不含 allow-modals），挡住加载失败时的弹窗。</pre>
-        </div>
-        
-        <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 16px; margin-bottom: 12px;">
-          <div style="font-size: 12px; font-weight: 600; margin-bottom: 6px; opacity: 0.9;">4. 响应式卡片布局</div>
-          <pre style="font-size: 12px; line-height: 1.5; opacity: 0.85; white-space: pre-wrap; margin: 0;">卡片改成左图右文布局：≥1024px 时截图在左（40%宽度），文字在右；<1024px 时上图下文，截图居中最大 260px。去掉截图底板，确保两张卡片截图尺寸一致。</pre>
-        </div>
-        
-        <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 16px; margin-bottom: 12px;">
-          <div style="font-size: 12px; font-weight: 600; margin-bottom: 6px; opacity: 0.9;">5. 图片压缩和处理</div>
-          <pre style="font-size: 12px; line-height: 1.5; opacity: 0.85; white-space: pre-wrap; margin: 0;">将截图复制到 assets/，宽度缩到 1600px 以内，转成 jpg，每张不超过 300KB。不裁切画面，不加滤镜。使用 sips -Z 1600 和 formatOptions 85。</pre>
-        </div>
-        
-        <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 16px;">
-          <div style="font-size: 12px; font-weight: 600; margin-bottom: 6px; opacity: 0.9;">6. 验收测试</div>
-          <pre style="font-size: 12px; line-height: 1.5; opacity: 0.85; white-space: pre-wrap; margin: 0;">验收：375、768、1280 三种宽度下 scrollWidth 等于 clientWidth（375 宽放进 iframe 里测，加 --allow-file-access-from-files）。只 add 指定文件，提交推送，贴 git show --stat HEAD。</pre>
+        <h4 style="font-size: 15px; font-weight: 600; margin-bottom: 8px; opacity: 0.95;">提示词模板（整理自本页的制作过程）</h4>
+        <p style="font-size: 12px; opacity: 0.7; margin-bottom: 16px;">把【】里的内容换成你自己的</p>
+        <div style="position: relative;">
+          <button id="copy-prompt" style="
+            position: absolute; top: 8px; right: 8px;
+            background: rgba(255,255,255,0.15);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+          ">复制</button>
+          <pre id="prompt-text" style="font-size: 12px; line-height: 1.5; opacity: 0.85; white-space: pre-wrap; margin: 0; background: rgba(255,255,255,0.1); border-radius: 8px; padding: 16px;">给我的 GitHub Pages（【你的用户名】.github.io）做一个单页作品集，给招聘方看。
+
+内容
+- 每个项目一块：名称、一句话说明、技术栈、截图；没有素材的先放灰色占位框，不要编内容
+- 只写我给你的事实，不要扩写，也不要补数字
+- 页脚放联系方式：【你的邮箱】和 GitHub 链接。不要放手机号、真实姓名、在职公司
+
+版式
+- 单个 index.html，纯静态，不用框架；移动端优先，375 / 768 / 1280 都要正常；支持深色模式；主色用【你的主色】
+- 固定导航：宽屏放右侧竖排，窄屏放底部横条；滚动时高亮当前区块，点击后直接高亮目标，不要一路闪过中间的区块
+- 截图：宽度缩到 1600px 以内，转成 jpg，每张不超过 300KB，不裁切画面
+- 嵌入外部音乐播放器（比如网易云）时，用单曲播放器，iframe 加 sandbox 挡住弹窗，并放一个加载中的占位
+
+验收（贴原始输出；测不到的写「未验证」，不要打勾）
+- 375、768、1280、1440 下 scrollWidth 等于 clientWidth（375 用移动端模拟测，无头 Chrome 的窗口最小只有 500）
+- 页面里搜不到手机号、真实姓名、公司名
+- 只 add 改动过的文件，提交推送，贴 git show --stat HEAD</pre>
         </div>
       </div>
     </div>
@@ -1201,65 +1222,68 @@
 </footer>
 
 <script>
-// Smooth scroll and active section tracking
-const navLinks = document.querySelectorAll('.nav-fixed a');
-const sections = document.querySelectorAll('header[id], section[id], footer[id]');
+// 导航：滚动时高亮当前区块；点击时直接高亮目标，滚到目标之前不再逐个闪过
+const nav = document.querySelector('.nav-fixed');
+const navLinks = [...nav.querySelectorAll('a')];
+const navTargets = navLinks.map(a => document.getElementById(a.getAttribute('href').slice(1)));
+let activeIndex = -1;
+let clickTarget = null;   // 点击导航后正在滚向的位置；为 null 时按滚动位置高亮
+let clickTimer = 0;
 
-// Highlight active section on scroll
-function updateActiveSection() {
-  const scrollPos = window.scrollY + 100;
-  const windowHeight = window.innerHeight;
-  const docHeight = document.documentElement.scrollHeight;
-  
-  // Check if we're at the bottom of the page
-  const isAtBottom = (scrollPos + windowHeight) >= (docHeight - 50);
-  
-  if (isAtBottom) {
-    // Force footer to be active when at bottom
-    navLinks.forEach(l => l.classList.remove('active'));
-    const footerLink = document.querySelector('.nav-fixed a[href="#footer"]');
-    if (footerLink) footerLink.classList.add('active');
-    return;
+function setActive(i) {
+  if (i === activeIndex) return;
+  activeIndex = i;
+  navLinks.forEach((a, k) => a.classList.toggle('active', k === i));
+  // 手机底栏放不下全部项时，把当前项滚到中间
+  if (nav.scrollWidth > nav.clientWidth) {
+    const a = navLinks[i];
+    nav.scrollTo({ left: a.offsetLeft - (nav.clientWidth - a.offsetWidth) / 2, behavior: 'smooth' });
   }
-  
-  sections.forEach(section => {
-    const top = section.offsetTop;
-    const height = section.offsetHeight;
-    const id = section.getAttribute('id');
-    const link = document.querySelector(`.nav-fixed a[href="#${id}"]`);
-    
-    if (scrollPos >= top && scrollPos < top + height) {
-      navLinks.forEach(l => l.classList.remove('active'));
-      if (link) link.classList.add('active');
-    }
-  });
 }
 
-window.addEventListener('scroll', updateActiveSection);
-updateActiveSection();
+function maxScroll() {
+  return document.documentElement.scrollHeight - window.innerHeight;
+}
 
-// Smooth scroll for navigation links
-navLinks.forEach(link => {
-  link.addEventListener('click', function(e) {
-    e.preventDefault();
-    const targetId = this.getAttribute('href').substring(1);
-    const targetElement = document.getElementById(targetId);
-    if (targetElement) {
-      let scrollPosition;
-      if (targetId === 'footer') {
-        // Scroll to the very bottom of the page
-        scrollPosition = document.documentElement.scrollHeight;
-      } else {
-        // Scroll to the top of the target section with a small offset
-        scrollPosition = targetElement.offsetTop - 20;
-      }
-      window.scrollTo({
-        top: scrollPosition,
-        behavior: 'smooth'
-      });
-    }
-  });
-});
+function sectionInView() {
+  if (window.scrollY >= maxScroll() - 2) return navLinks.length - 1;
+  const line = window.scrollY + window.innerHeight * 0.3;
+  let i = 0;
+  navTargets.forEach((t, k) => { if (t.getBoundingClientRect().top + window.scrollY <= line) i = k; });
+  return i;
+}
+
+function endClickScroll() {
+  clickTarget = null;
+  clearTimeout(clickTimer);
+}
+
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (clickTarget !== null) {
+    // 点击引起的滚动：到达目标、或 400ms 没再滚动（用户中途打断等）才恢复按位置高亮
+    if (Math.abs(window.scrollY - clickTarget) < 2) { endClickScroll(); return; }
+    clearTimeout(clickTimer);
+    clickTimer = setTimeout(endClickScroll, 400);
+    return;
+  }
+  if (ticking) return;
+  ticking = true;
+  requestAnimationFrame(() => { ticking = false; setActive(sectionInView()); });
+}, { passive: true });
+
+navLinks.forEach((a, i) => a.addEventListener('click', e => {
+  e.preventDefault();
+  const last = i === navLinks.length - 1;
+  const want = last ? maxScroll() : navTargets[i].getBoundingClientRect().top + window.scrollY - 20;
+  clickTarget = Math.max(0, Math.min(want, maxScroll()));
+  setActive(i);
+  clearTimeout(clickTimer);
+  clickTimer = setTimeout(endClickScroll, 1500); // 已在目标位置、不会触发滚动时也能解锁
+  window.scrollTo({ top: clickTarget, behavior: 'smooth' });
+}));
+
+setActive(sectionInView());
 
 // Toggle prompts display
 document.getElementById('toggle-prompts').addEventListener('click', function() {
@@ -1273,6 +1297,23 @@ document.getElementById('toggle-prompts').addEventListener('click', function() {
     container.style.display = 'none';
     button.textContent = '查看提示词 →';
   }
+});
+
+// Copy prompt template
+document.getElementById('copy-prompt').addEventListener('click', async function () {
+  const pre = document.getElementById('prompt-text');
+  try {
+    await navigator.clipboard.writeText(pre.textContent);
+  } catch {
+    const range = document.createRange();
+    range.selectNodeContents(pre);
+    const sel = getSelection();
+    sel.removeAllRanges(); sel.addRange(range);
+    document.execCommand('copy');
+    sel.removeAllRanges();
+  }
+  this.textContent = '已复制';
+  setTimeout(() => { this.textContent = '复制'; }, 2000);
 });
 </script>
 
