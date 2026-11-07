@@ -891,13 +891,13 @@
 
     <div class="screenshots">
       <div class="screenshot">
-        <img src="assets/congji-1.jpg" alt="賨记小程序截图 1" loading="lazy">
+        <img src="assets/congji-1.jpg" alt="賨记小程序截图 1" loading="lazy" width="1080" height="2344">
       </div>
       <div class="screenshot">
-        <img src="assets/congji-2.jpg" alt="賨记小程序截图 2" loading="lazy">
+        <img src="assets/congji-2.jpg" alt="賨记小程序截图 2" loading="lazy" width="1080" height="2344">
       </div>
       <div class="screenshot">
-        <img src="assets/congji-3.jpg" alt="賨记小程序截图 3" loading="lazy">
+        <img src="assets/congji-3.jpg" alt="賨记小程序截图 3" loading="lazy" width="1080" height="2344">
       </div>
     </div>
 
@@ -948,10 +948,10 @@
 
     <div class="screenshots screenshots--stacked mb-32">
       <div class="screenshot screenshot--horizontal">
-        <img src="assets/chelae-log-1.jpg" alt="Chelae 仿真测试日志：CTP 登录与客户端认证" loading="lazy">
+        <img src="assets/chelae-log-1.jpg" alt="Chelae 仿真测试日志：CTP 登录与客户端认证" loading="lazy" width="1200" height="720">
       </div>
       <div class="screenshot screenshot--horizontal">
-        <img src="assets/chelae-log-2.jpg" alt="Chelae 仿真测试日志：启动与合约初始化" loading="lazy">
+        <img src="assets/chelae-log-2.jpg" alt="Chelae 仿真测试日志：启动与合约初始化" loading="lazy" width="1200" height="760">
       </div>
       <p class="shots-caption">上线前在期货公司仿真环境完成测试，用于开通程序化交易权限</p>
     </div>
@@ -970,13 +970,13 @@
 
     <div class="screenshots screenshots--game">
       <div class="screenshot">
-        <img src="assets/yongjie-1.jpg" alt="誓约试炼开场" loading="lazy">
+        <img src="assets/yongjie-1.jpg" alt="誓约试炼开场" loading="lazy" width="1600" height="900">
       </div>
       <div class="screenshot">
-        <img src="assets/yongjie-2.jpg" alt="斩击与 Boss 预警" loading="lazy">
+        <img src="assets/yongjie-2.jpg" alt="斩击与 Boss 预警" loading="lazy" width="1600" height="900">
       </div>
       <div class="screenshot">
-        <img src="assets/yongjie-3.jpg" alt="守门者近景" loading="lazy">
+        <img src="assets/yongjie-3.jpg" alt="守门者近景" loading="lazy" width="1600" height="900">
       </div>
     </div>
 
@@ -1005,7 +1005,7 @@
     <div class="cards">
       <!-- 启明星 -->
       <div class="card card--horizontal">
-        <img src="assets/qimingxing-1.jpg" alt="启明星小程序截图" loading="lazy" class="card-screenshot">
+        <img src="assets/qimingxing-1.jpg" alt="启明星小程序截图" loading="lazy" class="card-screenshot" width="739" height="1600">
         <div class="card-content">
           <h3>启明星 <span class="dev-tag">开发中</span></h3>
           <p class="card-subtitle">微信小程序</p>
@@ -1016,7 +1016,7 @@
 
       <!-- 地铁刷卡 -->
       <div class="card card--horizontal">
-        <img src="assets/subway-game.jpg" alt="地铁刷卡小游戏截图" loading="lazy" class="card-screenshot">
+        <img src="assets/subway-game.jpg" alt="地铁刷卡小游戏截图" loading="lazy" class="card-screenshot" width="734" height="1588">
         <div class="card-content">
           <h3>地铁刷卡</h3>
           <p class="card-subtitle">微信小游戏</p>
@@ -1179,9 +1179,8 @@
       
       <div id="prompts-container" style="display: none; margin-top: 24px; text-align: left; max-width: 700px; margin-left: auto; margin-right: auto;">
         <h4 style="font-size: 15px; font-weight: 600; margin-bottom: 16px; opacity: 0.95;">提示词模板（整理自本页的制作过程）</h4>
-        <div style="position: relative;">
+        <div style="display: flex; justify-content: flex-end; margin-bottom: 8px;">
           <button id="copy-prompt" style="
-            position: absolute; top: 8px; right: 8px;
             background: rgba(255,255,255,0.15);
             color: white;
             border: 1px solid rgba(255,255,255,0.3);
@@ -1192,7 +1191,8 @@
             cursor: pointer;
             transition: all 0.2s;
           ">复制</button>
-          <pre id="prompt-text" style="font-size: 12px; line-height: 1.5; opacity: 0.85; white-space: pre-wrap; margin: 0; background: rgba(255,255,255,0.1); border-radius: 8px; padding: 16px;">给我的 GitHub Pages（【你的用户名】.github.io）做一个单页作品集，给招聘方看。
+        </div>
+        <pre id="prompt-text" style="font-size: 12px; line-height: 1.5; opacity: 0.85; white-space: pre-wrap; margin: 0; background: rgba(255,255,255,0.1); border-radius: 8px; padding: 16px;">给我的 GitHub Pages（【你的用户名】.github.io）做一个单页作品集，给招聘方看。
 
 内容
 - 每个项目一块：名称、一句话说明、技术栈、截图；没有素材的先放灰色占位框，不要编内容
@@ -1245,6 +1245,7 @@ function maxScroll() {
 }
 
 function sectionInView() {
+  if (window.scrollY <= 2) return 0;
   if (window.scrollY >= maxScroll() - 2) return navLinks.length - 1;
   const line = window.scrollY + window.innerHeight * 0.3;
   let i = 0;
