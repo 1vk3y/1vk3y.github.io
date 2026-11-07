@@ -721,10 +721,6 @@
 
   /* Responsive */
   @media (min-width: 768px) {
-    .header h1 { font-size: 40px; }
-    .header .tagline { font-size: 18px; }
-    .header .cursive { font-size: 24px; }
-
     .section-title { font-size: 32px; }
 
     .screenshots {
@@ -739,9 +735,6 @@
   }
 
   @media (min-width: 1024px) {
-    .header { padding: 64px 0 56px; }
-    .header h1 { font-size: 48px; }
-
     section { padding: 80px 0; }
 
     .screenshot { width: 320px; }
@@ -840,6 +833,64 @@
     }
   }
 
+  /* Header horizontal layout */
+  .header { padding: 18px 0; text-align: left; }
+  .header .container { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 14px; row-gap: 2px; }
+  .header h1 { font-size: 28px; margin: 0; order: 1; }
+  .header .contact { order: 2; margin-left: auto; gap: 16px; }
+  .header .container::after { content: ""; flex-basis: 100%; order: 3; }
+  .header .tagline { font-size: 14px; margin: 0; order: 4; }
+  .header .cursive { font-size: 17px; margin: 0; order: 5; }
+  @media (min-width: 768px) {
+    .header { padding: 22px 0; }
+    .header .container::after { display: none; }
+    .header h1 { font-size: 32px; }
+    .header .tagline { font-size: 15px; order: 2; }
+    .header .cursive { font-size: 20px; order: 3; }
+    .header .contact { order: 4; }
+  }
+
+  /* Overview section */
+  .overview { padding-top: 40px; }
+  .ov-lead { font-size: 15px; color: var(--text-secondary); margin-bottom: 16px; }
+  .ov-lead b { color: var(--text); font-size: 18px; }
+  .ov-bar { display: flex; height: 14px; border-radius: 7px; overflow: hidden; gap: 2px; margin-bottom: 20px; }
+  .ov-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  .ov-card { display: grid; grid-template-columns: 10px auto 1fr; grid-template-rows: auto auto; column-gap: 10px; row-gap: 4px;
+             padding: 14px 16px; border: 1px solid var(--divider); border-radius: 12px; background: var(--card-bg); color: inherit; text-decoration: none; }
+  .ov-card i { grid-row: 1; width: 10px; height: 10px; border-radius: 3px; align-self: center; }
+  .ov-n { grid-row: 1; font-size: 20px; font-weight: 700; }
+  .ov-t { grid-row: 1; font-size: 14px; color: var(--text-secondary); align-self: center; }
+  .ov-d { grid-column: 1 / -1; font-size: 13px; line-height: 1.6; color: var(--text-secondary); }
+  a.ov-card:hover { border-color: var(--primary); opacity: 1; }
+  @media (min-width: 768px) {
+    .ov-grid { grid-template-columns: repeat(2, 1fr); }
+    .ov-big { grid-column: 1 / -1; }
+  }
+  @media (min-width: 1024px) {
+    .ov-grid { grid-template-columns: repeat(4, 1fr); }
+    .ov-big { grid-column: 1 / -1; }
+  }
+
+  /* Nav green glass */
+  .nav-fixed {
+    background: rgba(238, 245, 234, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 8px 24px rgba(36, 82, 42, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    backdrop-filter: blur(16px) saturate(180%);
+  }
+  @media (prefers-color-scheme: dark) {
+    .nav-fixed {
+      background: rgba(30, 36, 30, 0.55);
+      border-color: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+  }
+  @media (max-width: 1439px) {
+    .nav-fixed { border-width: 1px 0 0 0; }
+  }
+
   /* Utility */
   .mb-16 { margin-bottom: 16px; }
   .mb-24 { margin-bottom: 24px; }
@@ -865,6 +916,7 @@
 <!-- Fixed Navigation -->
 <nav class="nav-fixed">
   <a href="#header">顶部</a>
+  <a href="#overview">一览</a>
   <a href="#congji">賨记</a>
   <a href="#chelae">Chelae</a>
   <a href="#yongjie">永劫转职</a>
@@ -886,6 +938,30 @@
     </div>
   </div>
 </header>
+
+<!-- 一览 -->
+<section id="overview" class="overview">
+  <div class="container">
+    <h2 class="section-title">一览</h2>
+    <p class="section-subtitle"><span class="cursive">at a glance</span></p>
+    <p class="ov-lead">2026 年 1–11 月，我在 Claude Code 里发了 <b>9,396</b> 条提示词，分布在 40 多个项目里（Codex、Grok、Gemini 未计入）。其中数据分析、工具与研究、写材料三类，有一部分是协助同事或其他部门完成的。</p>
+    <div class="ov-bar" role="img" aria-label="提示词按类别分布">
+      <span style="flex: 6357; background: var(--primary-dark);"></span>
+      <span style="flex: 1607; background: var(--primary);"></span>
+      <span style="flex: 630; background: var(--primary-mid);"></span>
+      <span style="flex: 417; background: #7fae74;"></span>
+      <span style="flex: 221; background: #a9cf9d;"></span>
+      <span style="flex: 164; background: var(--divider);"></span>
+    </div>
+    <div class="ov-grid">
+      <a class="ov-card ov-big" href="#chelae"><i style="background: var(--primary-dark);"></i><span class="ov-n">6,357</span><span class="ov-t">大项目</span><span class="ov-d">Chelae 期货量化 · 永劫转职 Steam 游戏 · 賨记小程序</span></a>
+      <div class="ov-card"><i style="background: var(--primary);"></i><span class="ov-n">1,607</span><span class="ov-t">数据分析</span><span class="ov-d">客户资产提级归因、理财购买归因、贷款逾期预测、取数智能体</span></div>
+      <a class="ov-card" href="#works"><i style="background: var(--primary-mid);"></i><span class="ov-n">630</span><span class="ov-t">小作品与创作</span><span class="ov-d">地铁刷卡、启明星、押韵工具、AI 歌词和音乐、AI 视频、世界杯胜平负预测</span></a>
+      <div class="ov-card"><i style="background: #7fae74;"></i><span class="ov-n">417</span><span class="ov-t">工具与研究</span><span class="ov-d">流水尽调校验算法、接口网关、定长报文工具、安全加固、离线协同绘图</span></div>
+      <div class="ov-card"><i style="background: #a9cf9d;"></i><span class="ov-n">221</span><span class="ov-t">写材料</span><span class="ov-d">行动计划、工作报告、汇报 PPT、发言稿；命名征集用 20 个 Agent 出方案、3 个评委两轮评选</span></div>
+    </div>
+  </div>
+</section>
 
 <!-- 賨记 -->
 <section id="congji">
