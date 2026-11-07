@@ -1173,7 +1173,7 @@
         
         <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 16px; margin-bottom: 12px;">
           <div style="font-size: 12px; font-weight: 600; margin-bottom: 6px; opacity: 0.9;">3. 嵌入外部播放器</div>
-          <pre style="font-size: 12px; line-height: 1.5; opacity: 0.85; white-space: pre-wrap; margin: 0;">嵌入网易云音乐外链播放器。播放器加载失败时会弹「资源加载失败」：给 iframe 加 sandbox="allow-scripts allow-same-origin allow-forms allow-popups"（不含 allow-modals），弹窗就被挡住了。console 里的跨域报错来自网易云自己的脚本，不影响播放。</pre>
+          <pre style="font-size: 12px; line-height: 1.5; opacity: 0.85; white-space: pre-wrap; margin: 0;">嵌入网易云音乐外链播放器。整张专辑的播放器有时加载不出曲目，改成每首歌一个单曲播放器（type=2）；iframe 加 sandbox（不含 allow-modals），挡住加载失败时的弹窗。</pre>
         </div>
         
         <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 16px; margin-bottom: 12px;">
