@@ -852,6 +852,7 @@
   <a href="#works">小作品</a>
   <a href="#beyond">代码之外</a>
   <a href="#workflow">AI 工作流</a>
+  <a href="#stats">工程统计</a>
   <a href="#footer">底部</a>
 </nav>
 
@@ -1094,6 +1095,95 @@
     </div>
   </div>
 </section>
+
+<!-- 工程统计 -->
+<section id="stats" style="background: var(--card-bg); padding: 48px 0;">
+  <div class="container" style="text-align: center;">
+    <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 24px; color: var(--text);">本次工程统计</h3>
+    
+    <div style="display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px;">
+      <div>
+        <div style="font-size: 32px; font-weight: 700; color: var(--primary);">17</div>
+        <div style="font-size: 13px; color: var(--text-secondary);">次提交</div>
+      </div>
+      <div>
+        <div style="font-size: 32px; font-weight: 700; color: var(--primary);">249</div>
+        <div style="font-size: 13px; color: var(--text-secondary);">行净增代码</div>
+      </div>
+      <div>
+        <div style="font-size: 32px; font-weight: 700; color: var(--primary);">6</div>
+        <div style="font-size: 13px; color: var(--text-secondary);">个文件变更</div>
+      </div>
+      <div>
+        <div style="font-size: 32px; font-weight: 700; color: var(--primary);">~3h</div>
+        <div style="font-size: 13px; color: var(--text-secondary);">工程时长</div>
+      </div>
+    </div>
+    
+    <button id="toggle-prompts" style="
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 32px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    ">做同款 →</button>
+    
+    <div id="prompts-container" style="display: none; margin-top: 32px; text-align: left; max-width: 800px; margin-left: auto; margin-right: auto;">
+      <h4 style="font-size: 16px; font-weight: 600; margin-bottom: 16px; color: var(--text);">可复用 Prompts</h4>
+      
+      <div style="background: var(--bg); border-radius: 8px; padding: 20px; margin-bottom: 16px;">
+        <div style="font-size: 13px; font-weight: 600; color: var(--primary); margin-bottom: 8px;">1. 创建作品集页面</div>
+        <pre style="font-size: 13px; line-height: 1.6; color: var(--text-secondary); white-space: pre-wrap; margin: 0;">给 1vk3y.github.io 做一个单页作品集，展示后端工程项目。页面要简洁专业，适合招聘方快速浏览。包含：项目截图、技术栈、简要说明。移动端优先，响应式布局。</pre>
+      </div>
+      
+      <div style="background: var(--bg); border-radius: 8px; padding: 20px; margin-bottom: 16px;">
+        <div style="font-size: 13px; font-weight: 600; color: var(--primary); margin-bottom: 8px;">2. 添加固定导航</div>
+        <pre style="font-size: 13px; line-height: 1.6; color: var(--text-secondary); white-space: pre-wrap; margin: 0;">将各小节的标题做成磁吸样式（模仿时间线），方便在页面任何地方都可以点到其他小节（包括顶部、底部）。桌面端右侧垂直导航，移动端底部水平导航，自动高亮当前区块。</pre>
+      </div>
+      
+      <div style="background: var(--bg); border-radius: 8px; padding: 20px; margin-bottom: 16px;">
+        <div style="font-size: 13px; font-weight: 600; color: var(--primary); margin-bottom: 8px;">3. 嵌入外部播放器</div>
+        <pre style="font-size: 13px; line-height: 1.6; color: var(--text-secondary); white-space: pre-wrap; margin: 0;">嵌入网易云音乐外链播放器，处理跨域错误和 alert 弹窗，添加加载超时重试机制，确保播放器稳定显示。拦截"资源加载失败"弹窗，console 错误来自第三方脚本无法消除但不影响功能。</pre>
+      </div>
+      
+      <div style="background: var(--bg); border-radius: 8px; padding: 20px; margin-bottom: 16px;">
+        <div style="font-size: 13px; font-weight: 600; color: var(--primary); margin-bottom: 8px;">4. 响应式卡片布局</div>
+        <pre style="font-size: 13px; line-height: 1.6; color: var(--text-secondary); white-space: pre-wrap; margin: 0;">卡片改成左图右文布局：≥1024px 时截图在左（40%宽度），文字在右；<1024px 时上图下文，截图居中最大 260px。去掉截图底板，确保两张卡片截图尺寸一致。</pre>
+      </div>
+      
+      <div style="background: var(--bg); border-radius: 8px; padding: 20px; margin-bottom: 16px;">
+        <div style="font-size: 13px; font-weight: 600; color: var(--primary); margin-bottom: 8px;">5. 图片压缩和处理</div>
+        <pre style="font-size: 13px; line-height: 1.6; color: var(--text-secondary); white-space: pre-wrap; margin: 0;">将截图复制到 assets/，宽度缩到 1600px 以内，转成 jpg，每张不超过 300KB。不裁切画面，不加滤镜。使用 sips -Z 1600 和 formatOptions 85。</pre>
+      </div>
+      
+      <div style="background: var(--bg); border-radius: 8px; padding: 20px;">
+        <div style="font-size: 13px; font-weight: 600; color: var(--primary); margin-bottom: 8px;">6. 验收测试</div>
+        <pre style="font-size: 13px; line-height: 1.6; color: var(--text-secondary); white-space: pre-wrap; margin: 0;">验收：375、768、1280 三种宽度下 scrollWidth 等于 clientWidth（375 宽放进 iframe 里测，加 --allow-file-access-from-files）。只 add 指定文件，提交推送，贴 git show --stat HEAD。</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+document.getElementById('toggle-prompts').addEventListener('click', function() {
+  const container = document.getElementById('prompts-container');
+  const button = this;
+  
+  if (container.style.display === 'none') {
+    container.style.display = 'block';
+    button.textContent = '收起 ↑';
+    button.style.background = 'var(--text-secondary)';
+  } else {
+    container.style.display = 'none';
+    button.textContent = '做同款 →';
+    button.style.background = 'var(--primary)';
+  }
+});
+</script>
 
 <!-- Footer -->
 <footer id="footer" class="footer">
