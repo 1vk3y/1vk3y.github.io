@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>1vk3y · 作品集</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script>
+// Suppress all alerts EARLY (before iframe loads)
+window.alert = function(message) {
+  console.warn('[Alert suppressed]', message);
+  return;
+};
+</script>
 <style>
   :root {
     --primary: #2f6b35;
@@ -1256,12 +1263,6 @@ document.getElementById('toggle-prompts').addEventListener('click', function() {
     button.textContent = '做同款 →';
   }
 });
-
-// Suppress all alerts (from NetEase iframe or elsewhere)
-window.alert = function(message) {
-  console.warn('[Alert suppressed]', message);
-  return;
-};
 
 // Suppress error events from iframe
 window.addEventListener('error', function(event) {
