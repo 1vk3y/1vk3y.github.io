@@ -1121,25 +1121,25 @@
         <p class="mt-16">本地部署 ACE-Step，加上 Suno</p>
         <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px; max-width: 430px;">
           <div class="music-slot">
-            <iframe src="https://music.163.com/outchain/player?type=2&id=3352372195&auto=0&height=66"
+            <iframe data-song="3352372195"
                     width="100%" height="86" frameborder="no" border="0"
                     marginwidth="0" marginheight="0" title="强力的丈夫"
                     sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
           </div>
           <div class="music-slot">
-            <iframe src="https://music.163.com/outchain/player?type=2&id=3356115862&auto=0&height=66"
+            <iframe data-song="3356115862"
                     width="100%" height="86" frameborder="no" border="0"
                     marginwidth="0" marginheight="0" title="下一场"
                     sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
           </div>
           <div class="music-slot">
-            <iframe src="https://music.163.com/outchain/player?type=2&id=3356485011&auto=0&height=66"
+            <iframe data-song="3356485011"
                     width="100%" height="86" frameborder="no" border="0"
                     marginwidth="0" marginheight="0" title="No Place to Go"
                     sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
           </div>
           <div class="music-slot">
-            <iframe src="https://music.163.com/outchain/player?type=2&id=3356932183&auto=0&height=66"
+            <iframe data-song="3356932183"
                     width="100%" height="86" frameborder="no" border="0"
                     marginwidth="0" marginheight="0" title="青石巷"
                     sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
@@ -1388,6 +1388,16 @@ document.getElementById('copy-prompt').addEventListener('click', async function 
   }
   this.textContent = '已复制';
   setTimeout(() => { this.textContent = '复制'; }, 2000);
+});
+
+// 网易云外链播放器：手机和电脑要用不同的地址。
+// 用错了网易云会跳转到 http 地址，被浏览器当作混合内容拦截，播放器就一直空白。
+// 判断规则和网易云一致：标识里有 Android / iPhone / iPad / iPod / Mobile 的算手机。
+const neteasePlayer = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)
+  ? 'https://music.163.com/m/outchain/player'
+  : 'https://music.163.com/outchain/player';
+document.querySelectorAll('iframe[data-song]').forEach(f => {
+  f.src = `${neteasePlayer}?type=2&id=${f.dataset.song}&auto=0&height=66`;
 });
 </script>
 
