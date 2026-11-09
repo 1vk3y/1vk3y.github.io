@@ -1291,6 +1291,15 @@
       <a href="https://github.com/1vk3y" target="_blank" rel="noopener">GitHub</a>
       <a href="mailto:lvk3y@foxmail.com" rel="noopener">邮箱</a>
     </div>
+    <p style="font-size: 12px; opacity: 0.6; margin-top: 16px;">
+      访问量：<span id="counter">-</span>
+      <script>
+        fetch('https://count.getloli.com/api/@1vk3y.github.io')
+          .then(r => r.json())
+          .then(d => document.getElementById('counter').textContent = d.count?.toLocaleString() ?? '-')
+          .catch(() => {});
+      </script>
+    </p>
   </div>
 </footer>
 
