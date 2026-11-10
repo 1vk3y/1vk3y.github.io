@@ -859,7 +859,7 @@
   .ov-card { display: grid; grid-template-columns: 10px auto 1fr; grid-template-rows: auto auto; column-gap: 10px; row-gap: 4px;
              padding: 14px 16px; border: 1px solid var(--divider); border-radius: 12px; background: var(--card-bg); color: inherit; text-decoration: none; }
   .ov-card i { grid-row: 1; width: 10px; height: 10px; border-radius: 3px; align-self: center; }
-  .ov-n { grid-row: 1; font-size: 20px; font-weight: 700; }
+  .ov-n { grid-row: 1; font-size: 20px; font-weight: 700; align-self: center; }
   .ov-t { grid-row: 1; font-size: 14px; color: var(--text-secondary); align-self: center; }
   .ov-d { grid-column: 1 / -1; font-size: 13px; line-height: 1.6; color: var(--text-secondary); }
   a.ov-card:hover { border-color: var(--primary); opacity: 1; }
@@ -1292,14 +1292,9 @@
       <a href="mailto:lvk3y@foxmail.com" rel="noopener">邮箱</a>
     </div>
     <p style="font-size: 12px; opacity: 0.6; margin-top: 16px;">
-      访问量：<span id="counter">-</span>
-      <script>
-        fetch('https://count.getloli.com/api/@1vk3y.github.io')
-          .then(r => r.json())
-          .then(d => document.getElementById('counter').textContent = d.count?.toLocaleString() ?? '-')
-          .catch(() => {});
-      </script>
+      访问量：<span id="busuanzi_value_site_pv">-</span>
     </p>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   </div>
 </footer>
 
